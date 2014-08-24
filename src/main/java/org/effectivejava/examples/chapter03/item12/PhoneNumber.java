@@ -95,6 +95,7 @@ public final class PhoneNumber implements Cloneable, Comparable<PhoneNumber> {
 	// return 0; // All fields are equal
 	// }
 
+	/*
 	public int compareTo(PhoneNumber pn) {
 		// Compare area codes
 		int areaCodeDiff = areaCode - pn.areaCode;
@@ -109,7 +110,22 @@ public final class PhoneNumber implements Cloneable, Comparable<PhoneNumber> {
 		// Area codes and prefixes are equal, compare line numbers
 		return lineNumber - pn.lineNumber;
 	}
+	 */
+	@Override
+	public int compareTo(PhoneNumber pn) {
+		// Compare area codes
+		int areaCodeDiff = areaCode - pn.areaCode;
+		if (areaCodeDiff != 0)
+			return areaCodeDiff;
 
+		// Area codes are equal, compare prefixes
+		int prefixDiff = prefix - pn.prefix;
+		if (prefixDiff != 0)
+			return prefixDiff;
+
+		// Area codes and prefixes are equal, compare line numbers
+		return lineNumber - pn.lineNumber;
+	}
 	public static void main(String[] args) {
 		NavigableSet<PhoneNumber> s = new TreeSet<PhoneNumber>();
 		for (int i = 0; i < 10; i++)
@@ -123,4 +139,6 @@ public final class PhoneNumber implements Cloneable, Comparable<PhoneNumber> {
 		return new PhoneNumber((short) rnd.nextInt(1000),
 				(short) rnd.nextInt(1000), (short) rnd.nextInt(10000));
 	}
+
+
 }

@@ -1,6 +1,15 @@
-// Adds a value component without violating the equals contract - Page 40
+
 package org.effectivejava.examples.chapter03.item08.composition;
 
+/*
+ * While there is no satisfactory way to extend an instantiable class and add a
+value component, there is a fine workaround. Follow the advice of Item 16, “Favor
+composition over inheritance.” Instead of having ColorPoint extend Point, give
+ColorPoint a private Point field and a public view method (Item 5) that returns
+the point at the same position as this color point:
+ */
+
+//Adds a value component without violating the equals contract - Page 40
 public class ColorPoint {
 	private final Point point;
 	private final Color color;
