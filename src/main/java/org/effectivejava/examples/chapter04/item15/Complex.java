@@ -1,19 +1,32 @@
 // Immutable class - pages 76-78
 package org.effectivejava.examples.chapter04.item15;
 
-public final class Complex {
+//class ComplexSub extends Complex {};
+
+//even without making Complex final, withing its constructor private, 
+//  you can not extend Complex
+//public final class Complex {
+public class Complex {
 	private final double re;
 	private final double im;
-
+	
+	//note the constructor is made private
 	private Complex(double re, double im) {
 		this.re = re;
 		this.im = im;
 	}
 
+	// Immutable class with static factories instead of constructors
 	public static Complex valueOf(double re, double im) {
 		return new Complex(re, im);
 	}
 
+	/*
+	 * This would be very messy using constructors
+because the natural constructor would have the same signature that we
+already used: Complex(double, double). With static factories it’s easy. Just add
+a second static factory with a name that clearly identifies its function
+	 */
 	public static Complex valueOfPolar(double r, double theta) {
 		return new Complex(r * Math.cos(theta), r * Math.sin(theta));
 	}

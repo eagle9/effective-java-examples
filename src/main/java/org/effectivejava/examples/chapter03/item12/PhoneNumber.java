@@ -111,8 +111,10 @@ public final class PhoneNumber implements Cloneable, Comparable<PhoneNumber> {
 		return lineNumber - pn.lineNumber;
 	}
 	 */
+	//the following compareTo method has issues when Diff overflows
 	@Override
 	public int compareTo(PhoneNumber pn) {
+		
 		// Compare area codes
 		int areaCodeDiff = areaCode - pn.areaCode;
 		if (areaCodeDiff != 0)
@@ -127,6 +129,12 @@ public final class PhoneNumber implements Cloneable, Comparable<PhoneNumber> {
 		return lineNumber - pn.lineNumber;
 	}
 	public static void main(String[] args) {
+		int n1 = Integer.MAX_VALUE;
+		int n2 = Integer.MIN_VALUE;
+		int diff = n1 - n2;
+		//diff = -1 this is not acceptable, overflow without Exception
+		//so the compareTo method has issues when the subtraction result overflows
+		System.out.println(n1 + " " + n2 + " " + diff);
 		NavigableSet<PhoneNumber> s = new TreeSet<PhoneNumber>();
 		for (int i = 0; i < 10; i++)
 			s.add(randomPhoneNumber());

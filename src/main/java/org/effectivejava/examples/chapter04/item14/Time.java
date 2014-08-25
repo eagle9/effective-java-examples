@@ -5,6 +5,8 @@ public final class Time {
 	private static final int HOURS_PER_DAY = 24;
 	private static final int MINUTES_PER_HOUR = 60;
 
+	//In summary, public classes should never expose mutable fields. It is less
+	//harmful, though still questionable, for public classes to expose immutable fields.
 	public final int hour;
 	public final int minute;
 
